@@ -1,34 +1,30 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
-// ignore: camel_case_types
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-  // <<CUERPO DE LA APP
-
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Builder(
-          builder: (BuildContext context) {
-            return TextButton(
-              child: Container(child: PlayerList()),
-              onPressed: () {
-                Container(
-                    /* Construir Alert dialog y show dialog / hacer llamamiento al metodo SHOW DIALOG desde aqui */);
-              },
-            );
-          },
-        ),
-      ),
-    );
-  }
+  State<HomePage> createState() => _HomePageState();
 }
 
-// CUERPO DE LA APP>>
-
-// <<WIDGETS Y CLASES
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: Center(
+      child: Builder(
+        builder: (BuildContext context) {
+          return TextButton(
+            child: Container(child: PlayerList()),
+            onPressed: () {
+              Container();
+            },
+          );
+        },
+      ),
+    ),
+  );
+}
 
 class Player {
   // AQUI SE ALMACENAN LOS NOMBRES, LA POSICION Y EL EQUIPO DE LOS JUGADORES
@@ -281,4 +277,62 @@ Widget PlayerCard(Player player) {
     ),
   );
 }
-  // WIDGETS Y CLASES>>
+
+Widget _buildAlertDialog(Player player) {
+  String team = player.team;
+  String position = player.position;
+  String name = player.name;
+  String profile = player.profile;
+
+  return AlertDialog(
+    content: Row(children: <Widget>[
+      Column(
+        //COLUMNA DEL ESCUDO Y LA POSICION.
+        children: [
+          CircleAvatar(
+            maxRadius: 15,
+            minRadius: 15,
+            backgroundImage: NetworkImage(team),
+          ),
+          const SizedBox(height: 10),
+          CircleAvatar(
+            maxRadius: 15,
+            minRadius: 15,
+            // backgroundColor: color,
+            child: getPositionCircle(position),
+          ),
+        ],
+      ),
+      const SizedBox(width: 5),
+      SizedBox(
+        width: 105,
+        height: 70,
+        child: Stack(
+          // ignore: prefer_const_literals_to_create_immutables
+          children: <Widget>[
+            // ignore: prefer_const_constructors
+            Align(
+                alignment: Alignment.bottomRight,
+                child: const CircleAvatar(
+                  maxRadius: 8,
+                  minRadius: 8,
+                  backgroundColor: Color.fromARGB(255, 241, 235, 235),
+                  child: Text(
+                    "0",
+                    style: TextStyle(fontSize: 12),
+                  ),
+                )),
+            SizedBox(
+              width: 100,
+              height: 70,
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(profile),
+              ),
+            ),
+            Text(name)
+          ],
+        ),
+      ),
+    ]),
+  );
+}

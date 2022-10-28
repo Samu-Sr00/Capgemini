@@ -62,7 +62,7 @@ class _IndexPageState extends State<IndexPage> {
 // ignore: non_constant_identifier_names
 // ignore: prefer_const_constructors, non_constant_identifier_names
 Widget BuildPage_home(String text) => Center(
-      child: const homePage(),
+      child: const HomePage(),
     );
 // ignore: non_constant_identifier_names
 Widget BuildPage_2(String text) => const Center(

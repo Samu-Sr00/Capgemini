@@ -189,38 +189,38 @@ Widget PlayerCard(Player player) {
   String position = player.position;
   // String dorsal = player.dorsal;
 
-  return TextButton(
+  return Card(
     // ESTRUCTURA DEL ALERT_DIALOG
-    onPressed: () => showDialog<String>(
-        barrierDismissible: false,
-        context: context,
-        builder: <Widget>(BuildContext context) => AlertDialog(
-              content: Row(children: [
-                Column(
-                  children: [
-                    CircleAvatar(
-                      maxRadius: 15,
-                      minRadius: 15,
-                      backgroundImage: NetworkImage(team),
-                    ),
-                    const SizedBox(height: 10),
-                    CircleAvatar(
-                      maxRadius: 15,
-                      minRadius: 15,
-                      child: getPositionCircle(position),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(profileUrl),
-                    ),
-                    Text(name)
-                  ],
-                ),
-              ]),
-            )),
+    // onPressed: () => showDialog(
+    //     context: context,
+    //     barrierDismissible: false,
+    //     builder: <Widget>(BuildContext context) => AlertDialog(
+    //           content: Row(children: [
+    //             Column(
+    //               children: [
+    //                 CircleAvatar(
+    //                   maxRadius: 15,
+    //                   minRadius: 15,
+    //                   backgroundImage: NetworkImage(team),
+    //                 ),
+    //                 const SizedBox(height: 10),
+    //                 CircleAvatar(
+    //                   maxRadius: 15,
+    //                   minRadius: 15,
+    //                   child: getPositionCircle(position),
+    //                 ),
+    //               ],
+    //             ),
+    //             Column(
+    //               children: [
+    //                 CircleAvatar(
+    //                   backgroundImage: NetworkImage(profileUrl),
+    //                 ),
+    //                 Text(name)
+    //               ],
+    //             ),
+    //           ]),
+    //         )),
     // ESTRUCTURA DE LAS TARJETAS DE LOS JUGADORES.
     child: Padding(
       padding: const EdgeInsets.fromLTRB(0, 8, 8, 8),

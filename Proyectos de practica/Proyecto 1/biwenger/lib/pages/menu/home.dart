@@ -88,7 +88,7 @@ Widget PlayerList() {
         name: "Sergio",
         team:
             "https://logodownload.org/wp-content/uploads/2017/02/manchester-city-fc-logo-escudo-badge.png",
-        position: "DI",
+        position: "DEL",
         dorsal: "0"),
   ];
 
@@ -187,76 +187,170 @@ Widget PlayerCard(Player player) {
   // String dorsal = player.dorsal;
 
   return Card(
-      // ESTRUCTURA DE LAS TARJETAS DE LOS JUGADORES.
-      child: Padding(
-    padding: const EdgeInsets.fromLTRB(0, 8, 8, 8),
-    child: ListTile(
-      title: Row(
-        // FILA EN LA QUE SE MUESTRAN EL EQUIPO Y LA POSICION.
-        children: <Widget>[
-          Column(
-            //COLUMNA DEL ESCUDO Y LA POSICION.
-            children: [
-              CircleAvatar(
-                maxRadius: 15,
-                minRadius: 15,
-                backgroundImage: NetworkImage(team),
-              ),
-              const SizedBox(height: 10),
-              CircleAvatar(
-                maxRadius: 15,
-                minRadius: 15,
-                // backgroundColor: color,
-                child: getPositionCircle(position),
-              ),
-            ],
-          ),
-          const SizedBox(width: 5),
-          SizedBox(
-            width: 105,
-            height: 70,
-            child: Stack(
-              // ignore: prefer_const_literals_to_create_immutables
-              children: <Widget>[
-                // ignore: prefer_const_constructors
-                Align(
-                    alignment: Alignment.bottomRight,
-                    child: const CircleAvatar(
-                      maxRadius: 8,
-                      minRadius: 8,
-                      backgroundColor: Color.fromARGB(255, 241, 235, 235),
-                      child: Text(
-                        "0",
-                        style: TextStyle(fontSize: 12),
-                      ),
-                    )),
-                SizedBox(
-                  width: 100,
-                  height: 70,
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage(profileUrl),
-                  ),
-                )
+    // ESTRUCTURA DE LAS TARJETAS DE LOS JUGADORES.
+    child: Padding(
+      padding: const EdgeInsets.fromLTRB(0, 8, 8, 8),
+      child: ListTile(
+        title: Row(
+          // FILA EN LA QUE SE MUESTRAN EL EQUIPO Y LA POSICION.
+          children: <Widget>[
+            Column(
+              //COLUMNA DEL ESCUDO Y LA POSICION.
+              children: [
+                CircleAvatar(
+                  maxRadius: 15,
+                  minRadius: 15,
+                  backgroundImage: NetworkImage(team),
+                ),
+                const SizedBox(height: 10),
+                CircleAvatar(
+                  maxRadius: 15,
+                  minRadius: 15,
+                  // backgroundColor: color,
+                  child: getPositionCircle(position),
+                ),
               ],
             ),
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Column(
-            //COLUMNA DEL NOMBRE Y CUERPO.
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(name, // NOMBRE DEL JUGADOR
-                  style: const TextStyle(fontSize: 20)),
-              const SizedBox(
-                height: 20,
+            const SizedBox(width: 5),
+            SizedBox(
+              width: 105,
+              height: 70,
+              child: Stack(
+                // ignore: prefer_const_literals_to_create_immutables
+                children: <Widget>[
+                  // ignore: prefer_const_constructors
+                  Align(
+                      alignment: Alignment.bottomRight,
+                      child: const CircleAvatar(
+                        maxRadius: 8,
+                        minRadius: 8,
+                        backgroundColor: Color.fromARGB(255, 241, 235, 235),
+                        child: Text(
+                          "0",
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      )),
+                  SizedBox(
+                    width: 100,
+                    height: 70,
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(profileUrl),
+                    ),
+                  )
+                ],
               ),
-              const Text("")
-            ],
-          )
-        ],
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Column(
+              //COLUMNA DEL NOMBRE Y CUERPO.
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(name, // NOMBRE DEL JUGADOR
+                    style: const TextStyle(fontSize: 20)),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text("")
+              ],
+            )
+          ],
+        ),
       ),
     ),
-  ));
+  );
+}
+
+// CONTENIDO DEL ALERTDIALOG CON UN PERFIL DEL JUGADOR.
+
+Widget playerProfileCard(Player player) {
+  String team = player.team;
+  String position = player.position;
+  String profile = player.profile;
+  String name = player.name;
+
+  // ignore: unnecessary_new
+  return ListTile(
+    title: Row(
+      children: [
+        Column(
+          children: <Widget>[
+            Column(
+              //COLUMNA DEL ESCUDO Y LA POSICION.
+              children: [
+                CircleAvatar(
+                  maxRadius: 15,
+                  minRadius: 15,
+                  backgroundImage: NetworkImage(team),
+                ),
+                const SizedBox(height: 10),
+                CircleAvatar(
+                  maxRadius: 15,
+                  minRadius: 15,
+                  // backgroundColor: color,
+                  child: getPositionCircle(position),
+                ),
+              ],
+            ),
+            const SizedBox(width: 5),
+            SizedBox(
+              width: 105,
+              height: 70,
+              child: Stack(
+                // ignore: prefer_const_literals_to_create_immutables
+                children: <Widget>[
+                  // ignore: prefer_const_constructors
+                  Align(
+                      alignment: Alignment.bottomRight,
+                      child: const CircleAvatar(
+                        maxRadius: 8,
+                        minRadius: 8,
+                        backgroundColor: Color.fromARGB(255, 241, 235, 235),
+                        child: Text(
+                          "0",
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      )),
+                  SizedBox(
+                    width: 100,
+                    height: 70,
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(profile),
+                    ),
+                  ),
+                  Text(name)
+                ],
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+          ],
+        )
+      ],
+    ),
+  );
+}
+
+// ignore: camel_case_types, unused_element
+class _playerProfile extends StatelessWidget {
+  const _playerProfile({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const AlertDialog(
+      content: _playerProfile(),
+    );
+  }
+}
+
+// ignore: non_constant_identifier_names
+Future<void> show_playerProfile(BuildContext context) async {
+  return showDialog<void>(
+    context: context,
+    builder: (_) => const _playerProfile(),
+  );
 }

@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
@@ -12,12 +14,8 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Builder(
           builder: (BuildContext context) {
-            return TextButton(
+            return Card(
               child: Container(child: PlayerList()),
-              onPressed: () {
-                Container(
-                    /* Construir Alert dialog y show dialog / hacer llamamiento al metodo SHOW DIALOG desde aqui */);
-              },
             );
           },
         ),
@@ -212,7 +210,6 @@ Widget PlayerCard(Player player) {
       padding: const EdgeInsets.fromLTRB(0, 8, 8, 8),
       child: ListTile(
         title: Row(
-          // FILA EN LA QUE SE MUESTRAN EL EQUIPO Y LA POSICION.
           children: <Widget>[
             Column(
               //COLUMNA DEL ESCUDO Y LA POSICION.
@@ -226,7 +223,6 @@ Widget PlayerCard(Player player) {
                 CircleAvatar(
                   maxRadius: 15,
                   minRadius: 15,
-                  // backgroundColor: color,
                   child: getPositionCircle(position),
                 ),
               ],
@@ -281,4 +277,49 @@ Widget PlayerCard(Player player) {
     ),
   );
 }
+
+// ignore: non_constant_identifier_names
+Widget PlayerProfile(Player player) {
+  String profile = player.profile;
+  String position = player.position;
+  String team = player.team;
+  String name = player.name;
+
+  return AlertDialog(
+    actions: [
+      Column(
+        children: [
+          CircleAvatar(
+            maxRadius: 15,
+            backgroundImage: NetworkImage(profile),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Row(
+            children: [
+              CircleAvatar(
+                maxRadius: 5,
+                backgroundImage: NetworkImage(team),
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              CircleAvatar(
+                maxRadius: 5,
+                child: getPositionCircle(position),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Text(name)
+        ],
+      ),
+    ],
+  );
+}
+
+// SHOW DIALOG
   // WIDGETS Y CLASES>>

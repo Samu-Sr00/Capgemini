@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
@@ -11,15 +9,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Builder(
-          builder: (BuildContext context) {
-            return Card(
-              child: Container(child: PlayerList()),
-            );
-          },
-        ),
-      ),
+      body: Center(child: PlayerList()),
     );
   }
 }
@@ -113,7 +103,9 @@ Widget PlayerList() {
   return ListView.builder(
     itemCount: players.length,
     itemBuilder: (context, index) {
-      return PlayerCard(players[index]);
+      return Card(
+        child: PlayerCard(context, players[index]),
+      );
     },
   );
 }
@@ -196,7 +188,7 @@ Widget getPositionCircle(String position) {
 }
 
 // ignore: non_constant_identifier_names
-Widget PlayerCard(Player player) {
+Widget PlayerCard(BuildContext context, Player player) {
   // HEREDA LOS JUGADORES GUARDADOS EN LA LISTA PLAYERS
   String profileUrl = player.profile;
   String name = player.name;
@@ -204,8 +196,10 @@ Widget PlayerCard(Player player) {
   String position = player.position;
   // String dorsal = player.dorsal;
 
-  return Card(
-    // ESTRUCTURA DE LAS TARJETAS DE LOS JUGADORES.
+  return TextButton(
+    onPressed: () {
+      ShowPlayerProfile(context, player);
+    },
     child: Padding(
       padding: const EdgeInsets.fromLTRB(0, 8, 8, 8),
       child: ListTile(
@@ -279,47 +273,55 @@ Widget PlayerCard(Player player) {
 }
 
 // ignore: non_constant_identifier_names
-Widget PlayerProfile(Player player) {
+void ShowPlayerProfile(BuildContext context, Player player) {
   String profile = player.profile;
-  String position = player.position;
   String team = player.team;
+  String position = player.position;
   String name = player.name;
 
-  return AlertDialog(
-    actions: [
-      Column(
-        children: [
-          CircleAvatar(
-            maxRadius: 15,
-            backgroundImage: NetworkImage(profile),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Row(
-            children: [
-              CircleAvatar(
-                maxRadius: 5,
-                backgroundImage: NetworkImage(team),
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          actions: [
+            Center(
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    maxRadius: 30,
+                    backgroundImage: NetworkImage(profile),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(child: Column()),
+                      CircleAvatar(
+                        maxRadius: 15,
+                        backgroundImage: NetworkImage(team),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      CircleAvatar(
+                        maxRadius: 15,
+                        child: getPositionCircle(position),
+                      ),
+                      Expanded(child: Column())
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(name),
+                  const SizedBox(height: 10)
+                ],
               ),
-              const SizedBox(
-                width: 5,
-              ),
-              CircleAvatar(
-                maxRadius: 5,
-                child: getPositionCircle(position),
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Text(name)
-        ],
-      ),
-    ],
-  );
+            ),
+          ],
+        );
+      });
 }
 
-// SHOW DIALOG
-  // WIDGETS Y CLASES>>
+// WIDGETS Y CLASES>>

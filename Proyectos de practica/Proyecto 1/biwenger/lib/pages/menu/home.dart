@@ -272,6 +272,8 @@ Widget PlayerCard(BuildContext context, Player player) {
   );
 }
 
+// PERFIL DE JUGADOR
+
 // ignore: non_constant_identifier_names
 void ShowPlayerProfile(BuildContext context, Player player) {
   String profile = player.profile;

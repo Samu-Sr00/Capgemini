@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: FuelList()),
+      body: Center(child: FuelStationList()),
     );
   }
 }
@@ -28,7 +28,7 @@ class FuelStation {
 }
 
 // ignore: non_constant_identifier_names
-Widget FuelList() {
+Widget FuelStationList() {
   List<FuelStation> stations = [
     FuelStation(
         name: "Plenoil", direction: "Aviles", price: "1.86 €", porcent: "8%"),
@@ -45,7 +45,7 @@ Widget FuelList() {
     FuelStation(
         name: "Plenoil", direction: "Aviles", price: "1.86 €", porcent: "8%"),
     FuelStation(
-        name: "Plenoil", direction: "Aviles", price: "1.86 €", porcent: "8%")
+        name: "Plenoil", direction: "Aviles", price: "1.86 €", porcent: "8%"),
   ];
 
   return ListView.builder(

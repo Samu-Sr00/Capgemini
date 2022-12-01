@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Biwenger Demo',
+      title: 'Gasolineras Demo',
       theme: ThemeData(brightness: Brightness.light),
       home: const IndexPage(),
     );

@@ -1,4 +1,8 @@
+// ignore_for_file: avoid_print, non_constant_identifier_names, unused_element
+
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart';
 
 // ignore: camel_case_types
 class HomePage extends StatelessWidget {
@@ -27,7 +31,13 @@ class FuelStation {
       required this.porcent});
 }
 
-// ignore: non_constant_identifier_names
+StationsData() async {
+  Response response = await get(Uri.https('sedeaplicaciones.minetur.gob.es',
+      '/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/'));
+  Map data = jsonDecode(response.body);
+  print(data);
+}
+
 Widget FuelStationList() {
   List<FuelStation> stations = [
     FuelStation(
@@ -58,7 +68,6 @@ Widget FuelStationList() {
   );
 }
 
-// ignore: non_constant_identifier_names
 Widget StationCard(BuildContext context, FuelStation stations) {
   String name = stations.name;
   String direction = stations.direction;
@@ -68,6 +77,7 @@ Widget StationCard(BuildContext context, FuelStation stations) {
   return Padding(
     padding: const EdgeInsets.fromLTRB(0, 8, 8, 8),
     child: ListTile(
+      onTap: () => StationsData(),
       title: Row(
         children: <Widget>[
           Column(
